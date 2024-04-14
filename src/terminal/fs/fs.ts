@@ -20,6 +20,10 @@ export class FsContainer {
     return this._cwd ?? this.fs.root
   }
 
+  pwd() {
+    return this.cwd
+  }
+
   constructor() {
     this.volume = new Volume()
     this.fs = createFsFromVolume(this.volume)

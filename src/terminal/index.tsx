@@ -1,7 +1,8 @@
+import { createEffect } from 'solid-js'
 import { FsContainer } from './fs'
 import { Terminal } from './terminal'
 import * as BUILTIN_COMMANDS from './terminal-builtin-commands'
-
+import { MAIN_TITLE } from './constants'
 import processWorkerUrl from './worker/process.worker?url'
 
 import './index.css'
@@ -31,12 +32,19 @@ class WebTerminal {
     requestAnimationFrame(() => {
       this.terminal.fit()
       this.terminal.focus()
+      this.terminal.print(MAIN_TITLE)
     })
+  }
+
+  dispose() {
+    this.terminal.destroy()
   }
 }
 
 export default function WebTerminalComponent() {
-  window.terminal = new WebTerminal()
-
-  return <div id="web-terminal" ref={el => window.terminal.open(el)} />
+  const terminal = new WebTerminal()
+  createEffect(() => () => {
+    terminal.dispose()
+  })
+  return <div id="web-terminal" ref={el => terminal.open(el)} />
 }

@@ -9,23 +9,14 @@ export class CallbackCommand extends Command {
   constructor(options: CommandOptions) {
     super(options)
 
-    if (!options.callback) {
-      throw new Error(
-        'The Command Options provided are not for a Callback Command',
-      )
-    }
+    if (!options.callback)
+      throw new Error('The Command Options provided are not for a Callback Command')
 
     this.callback = options.callback
   }
 
-  async run({ fs }: FsContainer) {
-    // let myArr = new Uint8Array(1024);
-    const str = await Promise.resolve(this.callback(this.options, fs))
-    if (typeof str == 'string') {
-      fs.writeFileSync(
-        '/dev/stdout',
-        new TextEncoder().encode(`${str}\n`),
-      )
-    }
+  async run(fs: FsContainer) {
+    const output = await this.callback(this.options, fs)
+    output && fs.fs.writeFileSync('/dev/stdout', new TextEncoder().encode(`${output}\n`))
   }
 }

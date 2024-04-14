@@ -427,6 +427,7 @@ export class CommandRunner {
       const { rows, cols } = tty.getTermSize()
       env.LINES = rows
       env.COLUMNS = cols
+      env.tty = tty
     }
 
     // Get other commands from the redirects
@@ -471,7 +472,6 @@ export class CommandRunner {
       commandOptions.unshift({
         args,
         env,
-        tty,
         callback: response,
       })
     }

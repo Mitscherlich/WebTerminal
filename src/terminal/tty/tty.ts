@@ -102,15 +102,12 @@ export class TTY {
     const normInput = message.replace(/[\r\n]+/g, '\n').replace(/\n/g, '\r\n')
     if (sync) {
       // We write it synchronously via hacking a bit on xterm
-
       // @ts-expect-error private field not in typings
       this.xterm._core.writeSync(normInput)
-      // @ts-expect-error private field not in typings
-      console.log('@@', this.xterm._core._renderService._renderer._value)
-      // @ts-expect-error private field not in typings
-      this.xterm._core._renderService._renderer._value._runOperation(renderer =>
-        renderer.onGridChanged(0, this.xterm.rows - 1),
-      )
+      // FIXME: This is a hack, but it doesn't works
+      // this.xterm._core._renderService._renderer._value._runOperation(renderer =>
+      //   renderer.onGridChanged(0, this.xterm.rows - 1),
+      // )
     }
     else {
       this.xterm.write(normInput)
