@@ -1,0 +1,31 @@
+import type { FsContainer } from '../fs'
+import { BaseCommand as Command } from './base'
+import type { CommandOptions } from './types'
+
+export class CallbackCommand extends Command {
+  callback: Function
+  stdoutCallback?: Function
+
+  constructor(options: CommandOptions) {
+    super(options)
+
+    if (!options.callback) {
+      throw new Error(
+        'The Command Options provided are not for a Callback Command',
+      )
+    }
+
+    this.callback = options.callback
+  }
+
+  async run({ fs }: FsContainer) {
+    // let myArr = new Uint8Array(1024);
+    const str = await Promise.resolve(this.callback(this.options, fs))
+    if (typeof str == 'string') {
+      fs.writeFileSync(
+        '/dev/stdout',
+        new TextEncoder().encode(`${str}\n`),
+      )
+    }
+  }
+}

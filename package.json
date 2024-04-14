@@ -1,0 +1,31 @@
+{
+  "name": "WebTerminal",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite --port=4000 --open",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/addon-web-links": "^0.11.0",
+    "@xterm/xterm": "^5.5.0",
+    "comlink": "^4.4.1",
+    "memfs": "^4.8.1",
+    "pako": "^1.0.11",
+    "shell-parse": "^0.0.2",
+    "shell-quote": "^1.8.1",
+    "solid-js": "^1.8.16",
+    "tar-stream": "^2.1.0"
+  },
+  "devDependencies": {
+    "@m9ch/eslint-config-all": "^0.3.2",
+    "@types/node": "^20.12.7",
+    "@types/shell-quote": "^1.7.5",
+    "eslint": "^8.57.0",
+    "events": "^3.3.0",
+    "vite": "^5.2.0",
+    "vite-plugin-node-polyfills": "^0.21.0",
+    "vite-plugin-solid": "^2.10.2"
+  }
+}

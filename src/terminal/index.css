@@ -1,0 +1,7 @@
+@import "@xterm/xterm/css/xterm.css";
+
+#web-terminal,
+#web-terminal > .xterm {
+  height: 100%;
+  width: 100%;
+}
