@@ -6,6 +6,8 @@ on:
       - main
       - dev
 
+  workflow_dispatch:
+
 jobs:
   build-and-deploy:
     environment:
@@ -13,8 +15,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     permissions:
+      contents: read
       pages: write
       id-token: write
+    
+    # 允许一个并发的部署
+    concurrency:
+      group: 'pages'
+      cancel-in-progress: true
 
     runs-on: ubuntu-latest
     steps:
@@ -39,7 +47,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - run: pnpm install && pnpm run bootstrap
-      - run: BASE_URL=/WebTerminal/ pnpm run build
+      - run: pnpm run build --base=/WebTerminal/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
