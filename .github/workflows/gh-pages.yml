@@ -7,7 +7,15 @@ on:
       - dev
 
 jobs:
-  build:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    permissions:
+      pages: write
+      id-token: write
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,19 +40,6 @@ jobs:
 
       - run: pnpm install && pnpm run bootstrap && pnpm run build
 
-  deploy:
-    needs: build
-
-    permissions:
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
