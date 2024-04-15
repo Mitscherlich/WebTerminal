@@ -2,6 +2,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "bootstrap": "pnpm run --filter=@web-terminal/sdk build",
     "dev": "vite --port=4000 --open",
     "build": "vite build"
   },
