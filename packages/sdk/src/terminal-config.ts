@@ -1,4 +1,5 @@
 import assert from 'node:assert'
+import type { ITerminalOptions } from '@xterm/xterm'
 import type { CommandOptions } from './command'
 import { FsContainer } from './fs'
 
@@ -14,7 +15,7 @@ type FetchCommandFunction = (options: {
   env?: { [key: string]: string }
 }) => Promise<CallbackCommand | CommandOptions>
 
-export interface Options {
+export interface Options extends ITerminalOptions {
   fetchCommand?: FetchCommandFunction
   fs?: FsContainer
   processWorkerUrl?: string

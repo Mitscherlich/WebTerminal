@@ -20,10 +20,14 @@ export class Terminal {
   private isOpen: boolean
   private pendingPrintOnOpen: string
 
-  constructor(config?: Options) {
-    this.config = new TerminalConfig(config)
-
-    this.xterm = new xterm.Terminal()
+  constructor(userOpts: Options = {}) {
+    const { fs, fetchCommand, processWorkerUrl, ...terminalOpts } = userOpts
+    this.config = new TerminalConfig({
+      fs,
+      fetchCommand,
+      processWorkerUrl,
+    })
+    this.xterm = new xterm.Terminal(terminalOpts)
 
     this.xterm.onResize(this.handleTermResize)
     this.xterm.onKey((keyEvent: { key: string; domEvent: KeyboardEvent }) => {

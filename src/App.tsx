@@ -24,6 +24,7 @@ class WebTerminal {
       fetchCommand: this.fetchCommand,
       fs: this.terminalFs,
       processWorkerUrl,
+      cursorBlink: true,
     })
   }
 
