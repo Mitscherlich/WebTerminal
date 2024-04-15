@@ -1,16 +1,6 @@
-import type { CommandOptions } from './command'
-import { MAIN_TITLE } from './constants'
-import type { FsContainer } from './fs'
+import type { CommandOptions, FsContainer } from '@web-terminal/sdk'
 
-export function welcome() {
-  return MAIN_TITLE
-}
-
-export async function github() {
-  return 'https://github.com/Mitscherlich/WebTerminal'
-}
-
-async function clear({ env }: CommandOptions) {
+function clear({ env }: CommandOptions) {
   env.tty?.clearTty()
 }
 

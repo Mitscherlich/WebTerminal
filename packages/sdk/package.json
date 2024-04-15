@@ -1,0 +1,32 @@
+{
+  "name": "@web-terminal/sdk",
+  "type": "module",
+  "version": "0.0.0",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild"
+  },
+  "peerDependencies": {
+    "@xterm/xterm": "^5.5.0"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/addon-web-links": "^0.11.0",
+    "comlink": "^4.4.1",
+    "memfs": "^4.8.1",
+    "pako": "^1.0.11",
+    "shell-parse": "^0.0.2",
+    "shell-quote": "^1.8.1",
+    "tar-stream": "^2.1.0"
+
+  },
+  "devDependencies": {
+    "@types/shell-quote": "^1.7.5",
+    "@xterm/xterm": "^5.5.0",
+    "events": "^3.3.0",
+    "unbuild": "^2.0.0"
+  }
+}

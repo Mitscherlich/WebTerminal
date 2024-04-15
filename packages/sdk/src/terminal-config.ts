@@ -4,7 +4,7 @@ import { FsContainer } from './fs'
 
 // A Custom command is a function that takes in a stdin string, and an array of argument strings,
 // And returns an stdout string, or undefined.
-export type CallbackCommand = (
+type CallbackCommand = (
   args: string[],
   stdin: string
 ) => Promise<string>

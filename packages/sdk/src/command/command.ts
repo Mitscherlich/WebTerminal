@@ -10,20 +10,20 @@ export class Command extends BaseCommand {
       throw new Error('Did not find a WebAssembly.Module for the WASI Command')
   }
 
-  async run(fs: FsContainer) {
-    const options = {
-      preopens: {
-        '.': '.',
-        '/': '/',
-        ...(this.options.preopens || {}),
-      },
-      env: this.options.env,
-      args: this.options.args,
-      bindings: {
-        // ...WASI.defaultBindings,
-        fs: fs.fs,
-      },
-    }
+  async run(_: FsContainer) {
+    // const options = {
+    //   preopens: {
+    //     '.': '.',
+    //     '/': '/',
+    //     ...(this.options.preopens || {}),
+    //   },
+    //   env: this.options.env,
+    //   args: this.options.args,
+    //   bindings: {
+    //     // ...WASI.defaultBindings,
+    //     fs: fs.fs,
+    //   },
+    // }
     // const wasi = new WASI(options)
     // const wasmModule = this.options.module as WebAssembly.Module
     // const instance = await WebAssembly.instantiate(wasmModule, {

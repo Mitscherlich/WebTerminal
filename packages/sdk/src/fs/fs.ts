@@ -140,8 +140,4 @@ export class FsContainer {
     })
     return promise
   }
-
-  private list(path: Link, recursive = false) {
-
-  }
 }
